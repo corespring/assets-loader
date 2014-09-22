@@ -29,7 +29,7 @@ class ReadConcatWriteTest extends Specification with BaseIntegration{
 
       readFn("target")(fileOut).map {
          e =>
-          e.contents === "one\ntwo"
+          e.contents === "one\ntwo\n"
           success
       }.getOrElse(failure("can't find file"))
 
