@@ -14,6 +14,8 @@ object JavascriptCompiler {
 
     val input = JSSourceFile.fromCode(name.getOrElse("unknown"), source)
 
+    input.clearCachedSource()
+
     compiler.compile(extern, input, options).success match {
       case true => compiler.toSource()
       case false => {

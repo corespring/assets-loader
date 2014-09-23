@@ -23,7 +23,9 @@ class PlayResourceReader extends Transformer[Unit, String] {
 
         val contents = url.map {
           u =>
-            IOUtils.toString(u.openStream())
+            val input = u.openStream()
+            IOUtils.toString(input)
+            IOUtils.closeQuietly(input)
         }.orElse {
           val errorMsg = s"can't load path: ${e.path}"
           throw new AssetsLoaderException(errorMsg)

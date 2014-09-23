@@ -24,7 +24,10 @@ class GzipTest extends Specification with GzipHelper {
       val zippedBytes = zipped(0).contents
       val output : FileOutputStream  = new FileOutputStream(new File("target-file"))
       IOUtils.write(zippedBytes, output)
-      val readBytes : Array[Byte] = IOUtils.toByteArray(new FileInputStream(new File("target-file")))
+      IOUtils.closeQuietly(output)
+      val input = new FileInputStream(new File("target-file"))
+      val readBytes : Array[Byte] = IOUtils.toByteArray(input)
+      IOUtils.closeQuietly(input)
       decompress(readBytes) === "alert('hello');"
     }
   }
