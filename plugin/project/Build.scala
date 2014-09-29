@@ -10,7 +10,7 @@ object Build extends sbt.Build {
 
   val appName = "assets-loader"
   val org = "org.corespring"
-  val ScalaVersion = "2.10.2"
+  val ScalaVersion = "2.10.3"
 
   val builder = new Builders(org, ScalaVersion)
 
